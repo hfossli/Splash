@@ -7,6 +7,7 @@
 #if os(macOS)
 
 import Foundation
+import AppKit
 
 extension CGImage {
     func write(to url: URL) {
@@ -14,6 +15,14 @@ extension CGImage {
         CGImageDestinationAddImage(destination, self, nil)
         CGImageDestinationFinalize(destination)
     }
+    func copyToPasteboard() {
+        let size = NSSize(width: self.width, height: self.height)
+        let nsImage = NSImage(cgImage: self, size: size)
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        pasteboard.writeObjects([nsImage])
+    }
 }
+
 
 #endif

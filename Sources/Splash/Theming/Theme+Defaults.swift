@@ -176,6 +176,34 @@ public extension Theme {
             )
         )
     }
+
+    /// Create a theme matching Xcode's "Default" theme
+    static func xcode(withFont font: Font) -> Theme {
+        return Theme(
+            font: font,
+            plainTextColor: Color(
+                red: 0,
+                green: 0,
+                blue: 0
+            ),
+            tokenColors: [
+                .keyword : Color(red: 0.666, green: 0.05, blue: 0.568),
+                .string : Color(red: 0.729, green: 0.0, blue: 0.067),
+                .type : Color(red: 0.427, green: 0.262, blue: 0.654),
+                .call : Color(red: 0.427, green: 0.262, blue: 0.654),
+                .number : Color(red: 0.0, green: 0.043, blue: 1.0),
+                .comment : Color(red: 0.0, green: 0.455, blue: 0.0),
+                .property : Color(red: 0.267, green: 0.537, blue: 0.576),
+                .dotAccess : Color(red: 0.267, green: 0.537, blue: 0.576),
+                .preprocessing : Color(red: 0.431, green: 0.125, blue: 0.051)
+            ],
+            backgroundColor: Color(
+                red: 1,
+                green: 1,
+                blue: 1
+            )
+        )
+    }
 }
 
 #endif

@@ -18,6 +18,7 @@ struct CLI {
         var outputURL: URL? = nil
         var padding: Double = 20.0
         var width: Double? = nil
+        var minimumWidth: Double? = nil
         var fontPath: String? = nil
         var fontSize: Double = 20.0
 
@@ -67,6 +68,11 @@ struct CLI {
                         usage(error: "Bad value passed to \(argument) option")
                     }
                     options.width = value
+                case "--minimumWidth":
+                    guard !arguments.isEmpty, let value = Double(arguments.removeFirst()) else {
+                        usage(error: "Bad value passed to \(argument) option")
+                    }
+                    options.minimumWidth = value
                 case "--output", "-o":
                     guard !argument.isEmpty else {
                         usage(error: "Bad value passed to \(argument) option")

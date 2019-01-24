@@ -20,6 +20,9 @@ do {
     if let width = options.width {
         stringSize.width = CGFloat(width)
     }
+    if let minimumWidth = options.minimumWidth {
+        stringSize.width = max(CGFloat(minimumWidth), stringSize.width)
+    }
 
     let contextRect = CGRect(
         x: 0,

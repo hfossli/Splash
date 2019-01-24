@@ -89,18 +89,16 @@ internal extension Font {
 
 #if os(iOS)
 
-import UIKit
-
-public extension Font {
-    typealias Loaded = UIFont
-}
+    import UIKit
+    public extension Font {
+        typealias Loaded = UIFont
+    }
 
 #elseif os(macOS)
 
-import Cocoa
-
-public extension Font {
-    typealias Loaded = NSFont
-}
+    import Cocoa
+    public extension Font {
+        typealias Loaded = NSFont
+    }
 
 #endif

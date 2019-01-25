@@ -15,13 +15,15 @@ do {
     let outputFormat = AttributedStringOutputFormat(theme: theme)
     let highlighter = SyntaxHighlighter(format: outputFormat)
     let string = highlighter.highlight(options.code ?? "")
-    var stringSize = string.size()
 
-    if let width = options.width {
-        stringSize.width = CGFloat(width)
-    }
-    if let minimumWidth = options.minimumWidth {
-        stringSize.width = max(CGFloat(minimumWidth), stringSize.width)
+    var stringSize: CGSize = string.size()
+    if #available(OSX 10.11, *) {
+        if let width = options.width {
+            stringSize = string.boundingRect(with: CGSize(width: CGFloat(width), height: CGFloat.greatestFiniteMagnitude), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).size
+            stringSize.width = CGFloat(width)
+        } else if let minimumWidth = options.minimumWidth, stringSize.width < CGFloat(minimumWidth) {
+            stringSize.width = CGFloat(minimumWidth)
+        }
     }
 
     let contextRect = CGRect(
